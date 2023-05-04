@@ -4,36 +4,45 @@ import {
   collection,
   orderBy,
   onSnapshot,
+  getDoc,
+  addDoc,
   limit,
+  doc,
 } from "firebase/firestore";
 import { db } from "../App";
+
 
 import Message from './Message'; 
 import SendMessage from './SendMessage'; 
 
 
-// import Message from "./Message";
-// import SendMessage from "./SendMessage";
-
-
 const ChatBox = () => {
+
+
+
+
   const [messages, setMessages] = useState([]);
-  
+
   useEffect(() => {
-    const q = query(
-      collection(db, "messages"),
-      orderBy("createdAt"),
-      limit(50)
-    );
-    const unsubscribe = onSnapshot(q, (QuerySnapshot) => {
-      let messages = [];
-      QuerySnapshot.forEach((doc) => {
-        messages.push({ ...doc.data(), id: doc.id });
-      });
-      setMessages(messages);
+  // , orderBy("timestamp"), limit(50)
+    const q = query(collection(db, "messages"));
+    const unsubscribe =  onSnapshot(q, (querySnapShot) => {
+      setMessages(
+      
+        querySnapShot.docs.map((doc) => ({
+          id: doc.id,
+          data: doc.data(),
+        }))
+      );
+      
     });
-    return () => unsubscribe;
+
+    return () => unsubscribe();
   }, []);
+
+
+  console.log(messages);
+
 
   return (
     <main className="chat-box">

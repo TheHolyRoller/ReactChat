@@ -1,14 +1,13 @@
 import { useState } from "react";
 
-
- 
-
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+
 
 
 import {auth} from '../App'; 
 import {db} from '../App';
 const SendMessage = () => {
+  
   
   
   const sendMessage = async (event) => {
@@ -19,34 +18,33 @@ const SendMessage = () => {
     }
     // const { uid, displayName, photoURL } = auth.currentUser;
     const { uid,  displayName, photoURL } = auth.currentUser;
+
+    const user = auth.currentUser; 
     
-    
-    console.log(auth.currentUser.displayName); 
-    
-    // Add in a try catch block here 
-    await addDoc(collection(db, "messages"), {
-              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-              title: inputTitle.current.value,
-              message: inputMessage.current.value,
-              name: user.displayName,
-              photoURL: user.photoURL,  
-    });
+    try{
+      await addDoc(collection(db, "messages"), {
+        created_at: serverTimestamp(),
+        name: user.displayName,
+        id: user.uid, 
+        message: message, 
+      });
+      
+      console.log(message); 
+      
+    }
+    catch(e) {
+      
+      console.log()
+      console.error(e); 
+    }
+   
     setMessage("");
-    
-    console.log(message); 
-    console.log(message.text); 
-    console.log(db); 
-    
     
   };
 
-  
-  console.log(auth.currentUser);
-  // console.log(auth); 
-  console.log("This is harder than expected"); 
-  
   const [message, setMessage] = useState("");
-
+  
+  
   
   return (
     <form onSubmit={(e) => sendMessage(e)} className="send-message">

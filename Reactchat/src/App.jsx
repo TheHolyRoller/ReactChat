@@ -26,22 +26,8 @@ const firebaseConfig = {
   measurementId: "G-T1BDHKVBHV"
 };
 
-
-
-// Add in the new firebase config here 
-// const firebaseConfig = {
-//   apiKey: "AIzaSyDg4vDVWaXnukidCZJ70DUmFHEioo9tmBA",
-//   authDomain: "commentcomponent.firebaseapp.com",
-//   projectId: "commentcomponent",
-//   storageBucket: "commentcomponent.appspot.com",
-//   messagingSenderId: "742150394806",
-//   appId: "1:742150394806:web:de3fcdbdd0aa273ca3e717",
-//   measurementId: "G-0DB89PN04S"
-// };
-
-
-
 const app = initializeApp(firebaseConfig);
+
 
 // Initialize Firebase Authentication and get a reference to the service
 const auth = getAuth(app);
@@ -53,18 +39,9 @@ export { app };
 export const db = getFirestore(app);
 
 
-
-// Use this site key in the HTML code your site serves to users.
-// 6LcZZa8lAAAAAD39jpAgseZgd-0y7OwHWu-w-W4x
-
-// Use this secret key for communication between your site and reCAPTCHA.
-// 6LcZZa8lAAAAAK-moNUww0-YzvwFmVhKdoTAL2FK
-
 function App() {
   
   const [user] = useAuthState(auth);
-  
-  // <Welcome />
   return (
     <div className="App">
       <NavBar />
@@ -72,5 +49,4 @@ function App() {
     </div>
   )
 }
-
 export default App
