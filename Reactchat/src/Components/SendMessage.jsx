@@ -9,7 +9,6 @@ import {db} from '../App';
 const SendMessage = () => {
   
   
-  
   const sendMessage = async (event) => {
     event.preventDefault();
     if (message.trim() === "") {
@@ -17,15 +16,15 @@ const SendMessage = () => {
       return;
     }
     // const { uid, displayName, photoURL } = auth.currentUser;
-    const { uid,  displayName, photoURL } = auth.currentUser;
+    // const { uid,  displayName, photoURL } = auth.currentUser;
 
-    const user = auth.currentUser; 
+    // const user = auth.currentUser; 
     
     try{
       await addDoc(collection(db, "messages"), {
         created_at: serverTimestamp(),
-        name: user.displayName,
-        id: user.uid, 
+        // name: user.displayName,
+        // id: user.uid, 
         message: message, 
       });
       
@@ -36,6 +35,10 @@ const SendMessage = () => {
       
       console.log()
       console.error(e); 
+      
+      console.log('why is the current user null');
+      
+      
     }
    
     setMessage("");
@@ -51,6 +54,7 @@ const SendMessage = () => {
       <label htmlFor="messageInput" hidden>
         Enter Message
       </label>
+      
       <input
         id="messageInput"
         name="messageInput"
