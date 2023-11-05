@@ -16,15 +16,27 @@ import NavBar from './Components/Navbar';
 import ChatBox from './Components/ChatBox'; 
 
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyCaNimQyX4LOyjl_Ju0GvBan317S0539SM",
-  authDomain: "chatapp-27eac.firebaseapp.com",
-  projectId: "chatapp-27eac",
-  storageBucket: "chatapp-27eac.appspot.com",
-  messagingSenderId: "779488758204",
-  appId: "1:779488758204:web:894c24411798c2051d83b9",
-  measurementId: "G-T1BDHKVBHV"
+  apiKey: "AIzaSyAkDQg2_25Gcn-24sIudE_r6yjqQTOEu1c",
+  authDomain: "reachchat-93c86.firebaseapp.com",
+  projectId: "reachchat-93c86",
+  storageBucket: "reachchat-93c86.appspot.com",
+  messagingSenderId: "803212449474",
+  appId: "1:803212449474:web:6f912d2feae448a5280d5b",
+  measurementId: "G-91CXKFMK3N"
 };
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
 
 const app = initializeApp(firebaseConfig);
 
